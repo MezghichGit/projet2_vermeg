@@ -8,26 +8,26 @@
 </head>
 <body >
 	<h1 align="center">Ajouter nouveau provider</h1>
-	<form action="#" method="POST">
+	<form th:action="@{/provider/add}" method="POST" th:object="${provider}">
 		<div class="container" >
 			<div class="row" style="padding-bottom:5px">
 			<div class="col-6" align="right">ID:</div>
-			<div class="col-6" ><input type="text" name="id"/></div>
+			<div class="col-6" ><input th:field="*{id}" type="text" name="id"/></div>
 			</div>
 			
 			<div class="row" style="padding-bottom:5px">
 			<div class="col-6" align="right">Label:</div>
-			<div class="col-6"><input type="text" name="label"/></div>
+			<div class="col-6"><input th:field="*{label}" type="text" name="label"/></div>
 			</div>
 			
 			<div class="row" style="padding-bottom:5px">
 			<div class="col-6" align="right">Email:</div>
-			<div class="col-6"><input type="text" name="email"/></div>
+			<div class="col-6"><input th:field="*{email}" type="text" name="email"/></div>
 			</div>
 			
 			<div class="row" style="padding-bottom:5px">
 			<div class="col-6" align="right">Address:</div>
-			<div class="col-6"><input type="text" name="address"/></div>
+			<div class="col-6"><input th:field="*{address}" type="text" name="address"/></div>
 			</div>
 			
 			<div class="row" style="padding-bottom:5px">
