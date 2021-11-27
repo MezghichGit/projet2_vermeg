@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1 align="center">Ma première vue theamleaf</h1>
+	<h2 th:text="${nom}">cc</h2>
+	<h2 th:text="${societe}">cc</h2>
+
+	<ol>
+		<li th:each="module : ${modules}" th:text="${module}">
+		</li>
+	</ol>
+</body>
+</html>
