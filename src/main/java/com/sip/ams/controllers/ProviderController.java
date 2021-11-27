@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -11,6 +12,16 @@ import com.sip.ams.entities.Provider;
 @RequestMapping("provider")
 @Controller
 public class ProviderController {
+	
+	static final ArrayList<Provider> providers = new ArrayList<>();
+	static{
+	providers.add(new Provider(1,"Orange","orange@gmail.com","France"));
+	providers.add(new Provider(2,"HUAWEI","huawei@gmail.com","Chine"));
+	providers.add(new Provider(3,"HP","hp@gmail.com","USA"));
+	
+	}
+	
+	
 	@RequestMapping("/welcome")
 	//@ResponseBody
 	public String home(Model model)
@@ -32,19 +43,27 @@ public class ProviderController {
 	@RequestMapping("/list")
 	public String listProvider(Model model)
 	{
-		ArrayList<Provider> providers = new ArrayList<>();
-		providers.add(new Provider(1,"Orange","orange@gmail.com","France"));
-		providers.add(new Provider(2,"HUAWEI","huawei@gmail.com","Chine"));
-		providers.add(new Provider(3,"HP","hp@gmail.com","USA"));
 		model.addAttribute("providers", providers);
-		
 		return "provider/listProvider";
 	}
 	
-	@RequestMapping("/delete")
-	@ResponseBody
-	public String deleteProvider(Model model)
+	@RequestMapping("/delete/{id}")
+	//@ResponseBody
+	public String deleteProvider(@PathVariable("id") int id)
 	{
-		return "provider/deleteProvider";
+		int index = -1;
+		int compteur = 0;
+		for(Provider p : providers)
+		{
+			if(p.getId()==id)
+			{
+				index =compteur; 
+			}
+			compteur++;
+		}
+		
+		providers.remove(index);
+		return "redirect:../list";
+		//return "ID : " + id;
 	}
 }
